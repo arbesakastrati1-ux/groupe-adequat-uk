@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { JobCard } from "@/components/jobs/JobCard";
 import { JobFilters } from "@/components/jobs/JobFilters";
 import { getJobs } from "@/lib/sanity/queries";
+import type { Job } from "@/lib/sanity/types";
 import { Loader2 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ interface JobsPageProps {
 }
 
 async function JobsList({ searchParams }: { searchParams: { q?: string; sector?: string; type?: string; location?: string } }) {
-  let jobs = [];
+  let jobs: Job[] = [];
   try {
     jobs = await getJobs({
       sector: searchParams.sector,
