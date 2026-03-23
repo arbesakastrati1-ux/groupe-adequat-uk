@@ -6,11 +6,12 @@ import { SDSpotlight } from "@/components/home/SDSpotlight";
 import { TrustSection } from "@/components/home/TrustSection";
 import { CTABanner } from "@/components/home/CTABanner";
 import { getFeaturedJobs } from "@/lib/sanity/queries";
+import type { Job } from "@/lib/sanity/types";
 
 export const revalidate = 300; // ISR: revalidate every 5 minutes
 
 export default async function HomePage() {
-  let featuredJobs = [];
+  let featuredJobs: Job[] = [];
   try {
     featuredJobs = await getFeaturedJobs(6);
   } catch {
